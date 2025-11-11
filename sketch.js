@@ -298,8 +298,8 @@ function updateCursorClock(baseAngle) {
     return;
   }
   const delta = angleDifference(normalizedBase, cursorClock.secondAngle);
-  cursorClock.secondAngle = normalizedBase;
-  if (delta !== 0) {
+  if (delta > 1e-5) {
+    cursorClock.secondAngle = normalizedBase;
     const minuteFactor = 0.32;
     const hourFactor = 0.12;
     cursorClock.minuteAngle = normalizeAngle(cursorClock.minuteAngle + delta * minuteFactor);
