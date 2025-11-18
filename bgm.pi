@@ -1,0 +1,28 @@
+use_bpm 60
+
+live_loop :tick do
+  sample :elec_tick, rate: 1.5, amp: 0.5
+  sleep 1
+end
+
+live_loop :melody do
+	use_synth :kalimba
+	play [:c4, :e4, :g4, :b4, :c5, :e5].choose, amp: rrand(0.1, 2), release: 2
+	sleep rrand_i(1, 4) * 0.125
+end
+
+live_loop :chords do
+	use_synth :dark_ambience
+	play chord(:c, :major7), attack: 4, release: 8, amp: 1.5
+	sleep 8
+	play chord(:f, :major7), attack: 4, release: 8, amp: 1.5
+	sleep 8
+end
+
+live_loop :choir do
+	use_synth :piano
+	play chord(:a, :minor), attack: 4, release: 10, amp: 3
+	sleep 4
+	play chord(:g, :major), attack: 4, release: 10, amp: 3
+	sleep 4
+end
